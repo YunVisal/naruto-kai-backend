@@ -1,6 +1,6 @@
 const episodeRouter = require('./episode');
 const arcRouter = require('./arc');
-const authRouter = require('./auth')
+const authRouter = require('./auth');
 
 module.exports = app => {
     app.use('/api/episode', episodeRouter);

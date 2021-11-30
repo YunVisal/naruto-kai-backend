@@ -1,4 +1,5 @@
 const express = require('express');
+const _ = require('lodash');
 
 const authController = require('../controllers/auth');
 const asyncHandler = require('../middlewares/async');
@@ -28,7 +29,7 @@ router.post('/login', asyncHandler(async (req, res) => {
 
 router.get('/user', auth, asyncHandler(async (req, res) => {
     const user = await authController.getUser(req);
-    res.status(200).json({ msg: 'Success!!!', user: user });
+    res.status(200).json({ msg: 'Success!!!', user: _.pick(user, ['_id', 'email', 'username']) });
 }));
 
 module.exports = router;

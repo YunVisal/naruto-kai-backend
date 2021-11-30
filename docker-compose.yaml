@@ -12,6 +12,11 @@ services:
       - 3000:3000
     env_file:
       - .env
+    volumes:
+      - image:/app/public/thumbnail
+      - ./:/app
+      - /app/node_modules
 
 volumes:
   data:
+  image:
