@@ -1,10 +1,10 @@
 module.exports = handler => {
-    return async (req, res, next) => {
+    return async (req, res) => {
         try{
             handler(req, res);
         }
         catch(err){
-            next(err);
+            res.status(500).json({"msg": "Something went wrong!"})
         };
     };
 };
