@@ -13,18 +13,20 @@ const episodeSchema = mongoose.Schema({
         type: String,
         require: true
     },
-    thumbnail_url: {
+    duration: {
         type: String,
         require: true
+    },
+    thumbnail_url: {
+        type: String,
+        require: false,
+        default: null,
     },
     video_url: {
         type: String,
-        require: true
-    },
-    description: {
-        type: String,
-        require: true
-    },
+        require: false,
+        default: null
+    }
 });
 
 module.exports = mongoose.model('Episode', episodeSchema)

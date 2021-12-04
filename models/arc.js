@@ -9,6 +9,11 @@ const arcSchema = mongoose.Schema({
         type: String,
         require: true
     },
+    thumbnail_url: {
+        type: String,
+        require: false,
+        default: null,
+    },
     description: {
         type: String,
         require: true
