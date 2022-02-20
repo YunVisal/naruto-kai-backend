@@ -36,20 +36,21 @@ router.post('/', auth, upload.single("thumbnail_url"), asyncHandler(async (req, 
 
 router.get('/all', auth, asyncHandler(async (req, res) => {
     const episodes = [];
-    fs.readFile(path.join(__dirname, 'data.csv'), 'utf8', async (err, data) => {
+    fs.readFile(path.resolve(__dirname, "../assets/episode.tsv"), 'utf8', async (err, data) => {
         if (err) {
             console.error(err)
             return
         }
         const temp = data.split('\n');
         for(let i = 1; i < temp.length; i++){
-            let entry = temp[i].split(',');
-            entry[3] = entry[3].substring(0, entry[3].indexOf("\r"));
+            let entry = temp[i].split('\t');
+            entry[4] = entry[4].substring(0, entry[4].indexOf("\r"));
             const data = {
                 episode: entry[0],
                 title: entry[1],
                 arc_id: entry[2],
-                duration: entry[3]
+                duration: entry[3],
+                thumbnail_url: entry[4]
             };
             const episode = await episodeController.postEpisode(data);
             episodes.push(episode);
@@ -70,6 +71,11 @@ router.put('/:id', auth, upload.single("thumbnail_url"), asyncHandler(async (req
 
 router.delete('/:id', auth, asyncHandler(async (req, res) => {
     await episodeController.deleteEpisode(req.params.id);
+    res.status(200).json({ msg: 'Success!!!' });
+}));
+
+router.delete('/', auth, asyncHandler(async (req, res) => {
+    await episodeController.deleteEpisodes();
     res.status(200).json({ msg: 'Success!!!' });
 }));
 

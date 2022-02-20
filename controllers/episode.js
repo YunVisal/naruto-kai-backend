@@ -26,9 +26,14 @@ const deleteEpisode = async(id) => {
     await Episode.findByIdAndDelete(episodeId);
 }
 
+const deleteEpisodes = async() => {
+    await Episode.remove({});
+}
+
 module.exports = {
     getEpisodes,
     postEpisode,
     updateEpisode,
-    deleteEpisode
+    deleteEpisode,
+    deleteEpisodes
 }

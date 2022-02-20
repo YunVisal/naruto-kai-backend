@@ -36,7 +36,7 @@ router.post('/', auth, upload.single("thumbnail_url"), asyncHandler(async (req, 
 
 router.get('/all', auth, asyncHandler(async (req, res) => {
     const arcs = [];
-    fs.readFile(path.join(__dirname, 'dataa.tsv'), 'utf8', async (err, data) => {
+    fs.readFile(path.resolve(__dirname, "../assets/arc.tsv"), 'utf8', async (err, data) => {
         if (err) {
             console.error(err)
             return
