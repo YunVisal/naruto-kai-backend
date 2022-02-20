@@ -21,7 +21,7 @@ require('./routers/index')(app);
 
 mongoose.connect(`mongodb://${process.env.MONGO_INITDB_ROOT_USERNAME}:${process.env.MONGO_INITDB_ROOT_PASSWORD}@db:27017/?authSource=admin`)
 .then(() => {
-    app.listen(3000, () => {
+    app.listen(80, () => {
         console.log('Connected to server!');
     })
 })
